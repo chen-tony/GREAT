@@ -5,7 +5,7 @@ The Genomic Informed Care for Motivating High Risk Individuals Eligible for Evid
 ## Principal Components Analysis in 1000 Genomes 
 Genotype and ancestry data from the 1000 Genomes Project (Phase 3) is publicly available. 
 
-First, we pull the genotype data (reference: https://meyer-lab-cshl.github.io/plinkQC/articles/Genomes1000.html). Population information has been processed in `1000GP_hg38.sample`.
+First, we pull the genotype data (reference: https://meyer-lab-cshl.github.io/plinkQC/articles/Genomes1000.html). Population information has been processed in `1000GP_hg38.sample`, but can be obtained publicly at ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ (2,504 samples, sourced from https://mathgen.stats.ox.ac.uk/impute/1000GP_Phase3.html) and https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/1000G_698_related_high_coverage.sequence.index (698 samples, sourced from https://www.internationalgenome.org/data-portal/data-collection/30x-grch38).
 ```{bash}
 wget https://www.dropbox.com/s/j72j6uciq5zuzii/all_hg38.pgen.zst?dl=1
 mv 'all_hg38.pgen.zst?dl=1' all_hg38.pgen.zst
