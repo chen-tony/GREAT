@@ -49,7 +49,7 @@ filter(ALT == A1) %>%
 left_join(pca_snp_map, by=c('#CHROM'='Chromosome', 'ID'='SNP (build 38)')) %>%
 select(CHR=`#CHROM`, SNP37=`SNP (build 37)`, POS37=`Position (build 37)`, SNP38=`SNP (build 38)`, POS38=`Position (build 38)`, REF, ALT, A1, paste0('PC', 1:5))
 
-write.table(pca_loadings_clean, '1000G_pca.eigenvec.allele.bim', row.names=F, quote=F)
+write.table(pca_loadings_clean, 'pca.eigenvec.allele.bim', row.names=F, quote=F)
 
 ```
 
@@ -58,14 +58,14 @@ We apply the PC loadings to the 1000 Genomes data (build 38), and our UK Biobank
 ```{bash}
 plink2 \
 --bfile all_hg38_pca \
---score 1000G_pca_eigenvec.allele.bim 4 8 header \
+--score pca_eigenvec.allele.bim 4 8 header \
 cols=+scoresums,-scoreavgs,-dosagesum,-nallele \
 --score-col-nums 9-13 \
 --out 1000G_pca
 
 plink2 \
 --bfile ukb_hg37 \
---score 1000G_pca_eigenvec.allele.bim 2 8 header \
+--score pca_eigenvec.allele.bim 2 8 header \
 cols=+scoresums,-scoreavgs,-dosagesum,-nallele \
 --score-col-nums 9-13 \
 --out ukb_pca
@@ -79,7 +79,7 @@ plink2 \
 --bfile all_hg38 \
 --extract prs_snps_hg38.txt \
 --make-bed \
---out 1000G_101
+--out 1000GP_101
 
 plink2 \
 --bfile ukb_hg37 \
@@ -92,6 +92,15 @@ plink2 \
 We use data from recently-published multi-ancestry genome-wide association studies (GWAS) to compute PRS. Subsetted genotypes are directly read into R, where we can more carefully compute PRS. 
 ```{R}
 library(genio)
+
+# 1000 Genomes 
+full_map = read_bim('1000GP_101.bim', verbose=F) %>%
+  mutate(chr=as.numeric(chr))
+full_fam = read_fam('1000GP_101.fam', verbose=F)
+full_G = read_bed('1000GP_101.bed', verbose=F,
+                  m_loci = nrow(full_map), n_ind = nrow(full_fam))
+
+# UK Biobank
 
 ```
 
