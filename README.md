@@ -1,4 +1,4 @@
-# GREAT
+# Clinical use of polygenic risk scores for lung cancer and difficulty quitting smoking in diverse patients
 
 The Genomic Informed Care for Motivating High Risk Individuals Eligible for Evidence-based Prevention (GREAT) framework is a novel approach to incorporate polygenic risk scores (PRS) in the clinic. Here, we describe our analysis procedure for performing principal components analysis (PCA), computing multi-ancestry PRS, and calibrating PRS across the ancestry continuum. We will focus on lung cancer analysis, with application to data from the UK Biobank (coded generally as ukb_hg37). 
 
