@@ -91,6 +91,8 @@ plink2 \
 
 We use data from recently-published multi-ancestry genome-wide association studies (GWAS) to compute PRS. Subsetted genotypes are directly read into R, where we can more carefully compute PRS. First, we apply the PRS weights to the 1000 Genomes data so that we can perform ancestry calibration. 
 ```{R}
+library(data.table)
+library(dplyr)
 library(genio)
 
 prs_weights = read.table('prs_weights.txt', header=T)
