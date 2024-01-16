@@ -195,7 +195,7 @@ prs_UKB_adj_var = (prs_UKB - pc5_comb) / sqrt(pc5_comb_var)
 ## Risk stratification
 For lung cancer, we use the 20th and 80th percentiles to divide 1000 Genomes PRS distribution into three risk groups and compute odds ratios. Since we cannot directly share UK Biobank data, we will use variable placeholders. 
 ```{R}
-percentiles_1000G = percentile(data_1000G$`Calibrated PRS`, c(0.2, 0.8))
+percentiles_1000G = quantile(data_1000G$`Calibrated PRS`, c(0.2, 0.8))
 
 data_UKB = data.frame(
   Lung_Cancer,
